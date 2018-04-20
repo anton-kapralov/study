@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:util="http://www.springframework.org/schema/util"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+        http://www.springframework.org/schema/beans/spring-beans.xsd
+        http://www.springframework.org/schema/util
+        http://www.springframework.org/schema/util/spring-util.xsd">
+
+    <bean id="event" class="kae.hello.springcore.Event" scope="prototype">
+        <constructor-arg>
+            <bean class="java.util.Date"/>
+        </constructor-arg>
+        <constructor-arg>
+            <bean class="java.text.DateFormat" factory-method="getDateTimeInstance"/>
+        </constructor-arg>
+    </bean>
+
+    <bean id="consoleEventLogger" class="kae.hello.springcore.ConsoleEventLogger"/>
+
+    <bean id="fileEventLogger" class="kae.hello.springcore.FileEventLogger" init-method="init">
+        <constructor-arg value="event.log"/>
+    </bean>
+
+    <bean id="cacheFileEventLogger" class="kae.hello.springcore.CacheFileEventLogger" init-method="init" destroy-method="destroy">
+        <constructor-arg value="event.log"/>
+        <constructor-arg value="10"/>
+    </bean>
+
+    <bean id="combinedEventLogger" class="kae.hello.springcore.CombinedEventLogger">
+        <constructor-arg>
+            <list>
+                <ref bean="consoleEventLogger"/>
+                <ref bean="fileEventLogger"/>
+            </list>
+        </constructor-arg>
+    </bean>
+
+    <util:map id="loggerMap">
+        <entry key="INFO" value-ref="consoleEventLogger"/>
+        <entry key="ERROR" value-ref="combinedEventLogger"/>
+    </util:map>
+
+</beans>

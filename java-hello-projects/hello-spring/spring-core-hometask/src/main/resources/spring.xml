@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:util="http://www.springframework.org/schema/util"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+ 		http://www.springframework.org/schema/beans/spring-beans-4.3.xsd http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util.xsd">
+
+  <bean id="userService" class="kae.hello.spring.core.hometask.service.inmemory.InMemoryUserService">
+    <constructor-arg ref="userList"/>
+  </bean>
+
+  <bean id="johnDoe" class="kae.hello.spring.core.hometask.domain.User">
+    <property name="id" value="1"/>
+    <property name="email" value="john.doe@gmail.com"/>
+    <property name="firstName" value="John"/>
+    <property name="lastName" value="Doe"/>
+  </bean>
+
+  <bean id="stanSmith" class="kae.hello.spring.core.hometask.domain.User">
+    <property name="id" value="2"/>
+    <property name="email" value="stan.smith@gmail.com"/>
+    <property name="firstName" value="Stan"/>
+    <property name="lastName" value="Smith"/>
+  </bean>
+
+  <bean id="fooBar" class="kae.hello.spring.core.hometask.domain.User">
+    <property name="id" value="3"/>
+    <property name="email" value="foo.bar@gmail.com"/>
+    <property name="firstName" value="Foo"/>
+    <property name="lastName" value="Bar"/>
+  </bean>
+
+  <util:list id="userList">
+    <ref bean="johnDoe"/>
+  </util:list>
+
+</beans>
