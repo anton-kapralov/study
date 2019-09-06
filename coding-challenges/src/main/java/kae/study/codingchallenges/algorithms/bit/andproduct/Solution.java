@@ -2,9 +2,7 @@ package kae.study.codingchallenges.algorithms.bit.andproduct;
 
 import java.util.Scanner;
 
-/**
- *
- */
+/** */
 public class Solution {
 
   public static void main(String[] args) {
@@ -33,5 +31,4 @@ public class Solution {
   private static boolean isPowerOf2(long n) {
     return (n & (n - 1)) == 0;
   }
-
 }

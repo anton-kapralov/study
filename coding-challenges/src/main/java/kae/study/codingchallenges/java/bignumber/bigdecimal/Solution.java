@@ -16,16 +16,17 @@ public class Solution {
       numbers[i] = scanner.nextLine();
     }
 
-    Arrays.sort(numbers, new Comparator<String>() {
-      @Override
-      public int compare(String o1, String o2) {
-        return -1 * new BigDecimal(o1).compareTo(new BigDecimal(o2));
-      }
-    });
+    Arrays.sort(
+        numbers,
+        new Comparator<String>() {
+          @Override
+          public int compare(String o1, String o2) {
+            return -1 * new BigDecimal(o1).compareTo(new BigDecimal(o2));
+          }
+        });
 
     for (String number : numbers) {
       System.out.println(number);
     }
   }
-
 }

@@ -8,12 +8,14 @@ import java.util.TreeSet;
 public class Solution {
 
   public static void main(String[] args) {
-    Set<Character> dictionary = new TreeSet<>(new Comparator<Character>() {
-      @Override
-      public int compare(Character o1, Character o2) {
-        return Character.toUpperCase(o1) - Character.toUpperCase(o2);
-      }
-    });
+    Set<Character> dictionary =
+        new TreeSet<>(
+            new Comparator<Character>() {
+              @Override
+              public int compare(Character o1, Character o2) {
+                return Character.toUpperCase(o1) - Character.toUpperCase(o2);
+              }
+            });
 
     for (char c = 'A'; c <= 'Z'; ++c) {
       dictionary.add(c);
@@ -30,5 +32,4 @@ public class Solution {
 
     System.out.println(dictionary.isEmpty() ? "pangram" : "not pangram");
   }
-
 }

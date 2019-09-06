@@ -46,5 +46,4 @@ public class BreadthFirstSearch {
 
     return Collections.emptyList();
   }
-
 }

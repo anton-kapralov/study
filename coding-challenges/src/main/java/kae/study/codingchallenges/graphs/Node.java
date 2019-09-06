@@ -33,8 +33,7 @@ public class Node<T> {
     if (this == o) return true;
     if (!(o instanceof Node)) return false;
     Node<?> node = (Node<?>) o;
-    return Objects.equals(value, node.value) &&
-        Objects.equals(linkedNodes, node.linkedNodes);
+    return Objects.equals(value, node.value) && Objects.equals(linkedNodes, node.linkedNodes);
   }
 
   @Override

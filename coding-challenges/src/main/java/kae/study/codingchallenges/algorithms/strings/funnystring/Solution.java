@@ -18,13 +18,12 @@ public class Solution {
     final int length = s.length();
 
     for (int i = 1; i < length; i++) {
-      if (Math.abs(s.charAt(i) - s.charAt(i - 1)) !=
-          Math.abs(s.charAt(length - i) - s.charAt(length - i - 1))) {
+      if (Math.abs(s.charAt(i) - s.charAt(i - 1))
+          != Math.abs(s.charAt(length - i) - s.charAt(length - i - 1))) {
         return false;
       }
     }
 
     return true;
   }
-
 }

@@ -3,9 +3,9 @@ package kae.study.codingchallenges.algorithms.bit.maximizingxor;
 import java.util.Scanner;
 
 public class Solution {
-/*
- * Complete the function below.
- */
+  /*
+   * Complete the function below.
+   */
 
   static int maxXor(int l, int r) {
     int maxXor = l ^ r;
@@ -32,6 +32,5 @@ public class Solution {
 
     res = maxXor(_l, _r);
     System.out.println(res);
-
   }
 }

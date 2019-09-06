@@ -17,9 +17,9 @@ public class BalancedBrackets {
         }
 
         char top = stack.pop();
-        if (top == '{' && bracket == '}' ||
-            top == '(' && bracket == ')'||
-            top == '[' && bracket == ']') {
+        if (top == '{' && bracket == '}'
+            || top == '(' && bracket == ')'
+            || top == '[' && bracket == ']') {
           continue;
         } else {
           return false;
@@ -35,8 +35,7 @@ public class BalancedBrackets {
     int t = in.nextInt();
     for (int a0 = 0; a0 < t; a0++) {
       String expression = in.next();
-      System.out.println( (isBalanced(expression)) ? "YES" : "NO" );
+      System.out.println((isBalanced(expression)) ? "YES" : "NO");
     }
   }
-
 }

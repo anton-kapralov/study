@@ -5,10 +5,10 @@ public class SpiralMatrix {
   public static char[][] getMatrix(int number) {
     switch (number) {
       case 0:
-        return new char[][]{
-            {'a', 'b', 'c', 'd'},
-            {'e', 'f', 'g', 'h'},
-            {'i', 'j', 'k', 'l'}
+        return new char[][] {
+          {'a', 'b', 'c', 'd'},
+          {'e', 'f', 'g', 'h'},
+          {'i', 'j', 'k', 'l'}
         };
       default:
         return new char[][] {};
@@ -24,8 +24,7 @@ public class SpiralMatrix {
     int rowOffset = 0;
     int columnOffset = 0;
 
-    while (columnOffset <= m / 2 ||
-        rowOffset <= n / 2) {
+    while (columnOffset <= m / 2 || rowOffset <= n / 2) {
       // First row
       for (int j = columnOffset; j < m; ++j) {
         System.out.print(matrix[rowOffset][j]);
@@ -57,5 +56,4 @@ public class SpiralMatrix {
       m--;
     }
   }
-
 }
