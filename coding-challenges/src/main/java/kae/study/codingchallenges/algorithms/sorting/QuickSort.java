@@ -1,10 +1,9 @@
 package kae.study.codingchallenges.algorithms.sorting;
 
-/**
- *
- */
-public class QuickSort {
+/** */
+public class QuickSort implements IntArraySort {
 
+  @Override
   public void sort(int[] arr) {
     sort(arr, 0, arr.length - 1);
   }
@@ -46,4 +45,8 @@ public class QuickSort {
     arr[j] = tmp;
   }
 
+  @Override
+  public String toString() {
+    return QuickSort.class.getSimpleName();
+  }
 }
