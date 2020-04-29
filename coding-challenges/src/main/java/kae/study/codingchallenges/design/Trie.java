@@ -15,8 +15,8 @@ public class Trie {
 
   private final Node root = new Node();
 
-  public void add(String s) {
-    if (s.isEmpty()) {
+  public void add(CharSequence s) {
+    if (s.length() == 0) {
       return;
     }
 
@@ -28,7 +28,7 @@ public class Trie {
     node.terminal = true;
   }
 
-  private Node lastNodeOf(String s) {
+  private Node lastNodeOf(CharSequence s) {
     Node node = root;
     for (int i = 0; i < s.length(); ++i) {
       char c = s.charAt(i);
@@ -41,12 +41,12 @@ public class Trie {
     return node;
   }
 
-  public boolean hasWord(String s) {
+  public boolean hasWord(CharSequence s) {
     Node node = lastNodeOf(s);
     return node != null && node.terminal;
   }
 
-  public boolean hasPrefix(String s) {
+  public boolean hasPrefix(CharSequence s) {
     Node node = lastNodeOf(s);
     return node != null;
   }
