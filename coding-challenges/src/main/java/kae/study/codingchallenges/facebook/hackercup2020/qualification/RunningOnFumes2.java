@@ -136,78 +136,40 @@ public class RunningOnFumes2 {
       return 0;
     }
 
-    from--;
-    to--;
-
-    List<List<Integer>> tree = new ArrayList<>(n);
-    for (int i = 0; i < n; i++) {
-      tree.add(new ArrayList<>());
+    List<List<Integer>> graph = new ArrayList<>(n);
+    for (int i = 0; i <= n; i++) {
+      graph.add(new ArrayList<>());
     }
 
-    int root = -1;
-    for (int i = 0; i < n; i++) {
-      if (roots[i] == 0) {
-        root = i;
-        continue;
-      }
-      int p = roots[i] - 1;
+    for (int i = 2; i <= n; i++) {
+      int p = roots[i - 1];
 
-      tree.get(p).add(i);
+      graph.get(p).add(i);
+      graph.get(i).add(p);
     }
 
-    int[] ett = new int[2 * n - 1];
-    int[] depths = new int[2 * n - 1];
+    int[] newRoots = new int[roots.length];
+    newRoots[to - 1] = -1;
+    rootAt(to, graph, newRoots);
+    newRoots[to - 1] = 0;
+    System.out.println(Arrays.toString(newRoots));
 
-    FromToEttIndexes ftei = new FromToEttIndexes(from, to);
-    buildEulerTourTree(tree, root, 0, 0, ett, depths, ftei);
+    int node = from;
+    while (newRoots[node - 1] != 0) {
+      System.out.println(node);
+      node = newRoots[node - 1];
+    }
 
-    System.out.println(Arrays.toString(ett));
-    System.out.println(Arrays.toString(depths));
-    System.out.println(ftei.fromFirst + " " + ftei.fromLast);
-    System.out.println(ftei.toFirst + " " + ftei.toLast);
+    return 0;
+  }
 
-    long[] costs = new long[n];
-    PriorityQueue<Long> heap = new PriorityQueue<>(tank * 2);
-
-    if (ftei.fromFirst < ftei.toFirst) {
-      for (int i = ftei.fromLast + 1; i <= ftei.toFirst; i++) {
-        System.out.printf("%d ", ett[i]);
-      }
-    } else {
-      for (int i = ftei.fromFirst - 1; i >= ftei.toLast; i--) {
-        System.out.printf("%d ", ett[i]);
-      }
-
-      int r = ftei.fromFirst;
-      int l = ftei.fromFirst - 1;
-
-      while (true) {
-
-        int currentTank = tank - 1;
-        while (currentTank >= 0) {
-          heap.add(costs[r] + prices[l]);
-          l--;
-          currentTank--;
-        }
+  private static void rootAt(int node, List<List<Integer>> tree, int[] roots) {
+    for (Integer neighbor : tree.get(node)) {
+      if (roots[neighbor - 1] == 0) {
+        roots[neighbor - 1] = node;
+        rootAt(neighbor, tree, roots);
       }
     }
-    System.out.println();
-
-    //    dfs(graph, visited, from, tank, costs, prices, heap, deque);
-
-    //    for (int i = tank + 1; i < n; ++i) {
-    //      if (heap.isEmpty()) {
-    //        return -1;
-    //      }
-    //      long minPrice = heap.peek();
-    //      costs[i] = minPrice;
-    //      heap.remove(prices[i - tank] + costs[i - tank]);
-    //      if (prices[i] > 0) {
-    //        heap.add(costs[i] + prices[i]);
-    //      }
-    //    }
-
-    return costs[n - 1];
   }
 
   private static int buildEulerTourTree(
