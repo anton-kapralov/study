@@ -1,4 +1,4 @@
-package kae.study.codingchallenges.facebook.hackercup2020.qualification;
+package kae.study.codingchallenges.facebook;
 
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
