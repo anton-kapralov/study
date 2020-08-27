@@ -1,7 +1,7 @@
 package kae.study.codingchallenges.backtracking;
 
 /** */
-public class Solution {
+public class WordSearch {
 
   //                                     Top      Right   Bottom  Left
   private static final int[][] MOVES = {{-1, 0}, {0, 1}, {1, 0}, {0, -1}};
