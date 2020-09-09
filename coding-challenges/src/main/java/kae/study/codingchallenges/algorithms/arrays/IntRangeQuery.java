@@ -3,7 +3,6 @@ package kae.study.codingchallenges.algorithms.arrays;
 import java.util.Arrays;
 import java.util.function.IntBinaryOperator;
 
-/** */
 public class IntRangeQuery {
 
   private final IntBinaryOperator operator;
@@ -36,24 +35,24 @@ public class IntRangeQuery {
     l += n;
     r += n;
 
-    int min = identity;
+    int result = identity;
 
     while (l <= r) {
       if (l % 2 == 1) {
         // l is right child => out of range, so adding to the result.
-        min = operator.applyAsInt(min, tree[l++]);
+        result = operator.applyAsInt(result, tree[l++]);
       }
 
       if (r % 2 == 0) {
         // r is left child => out of range, so adding to the result.
-        min = operator.applyAsInt(min, tree[r--]);
+        result = operator.applyAsInt(result, tree[r--]);
       }
 
       l /= 2;
       r /= 2;
     }
 
-    return min;
+    return result;
   }
 
   public void update(int i, int v) {
