@@ -6,7 +6,8 @@ import java.io.IOException;
 import java.io.OutputStreamWriter;
 import java.io.PrintWriter;
 import java.nio.file.Paths;
-import java.util.PriorityQueue;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.Scanner;
 
 public class AlarmClock {
@@ -32,24 +33,50 @@ public class AlarmClock {
   }
 
   static long solve(int n, int x, int k, int[] ts) {
-    PriorityQueue<Long> q = new PriorityQueue<>(n);
+    Map<Integer, Integer> map = new HashMap<>();
+
+    int min = Integer.MAX_VALUE;
     for (int t : ts) {
-      q.add((long) t);
+      map.merge(t % x, t, Integer::min);
+      min = Math.min(min, t);
     }
 
-    long ct = -1;
+    ts = new int[map.size()];
+    int i = 0;
+    for (Integer value : map.values()) {
+      ts[i++] = value;
+    }
+
+    long l = 0;
+    long r = min + (long) x * k;
+
+    while (l <= r) {
+      long m = (l + r) / 2;
+
+      int count = count(m, x, ts);
+      if (count == k) {
+        return m;
+      }
+
+      if (count < k) {
+        l = m + 1;
+      } else {
+        r = m - 1;
+      }
+    }
+
+    return l;
+  }
+
+  private static int count(long ct, int x, int[] ts) {
     int c = 0;
-    while (c < k) {
-      long t = q.remove();
-      if (t == ct) {
+    for (int t : ts) {
+      if (ct < t) {
         continue;
       }
-      c++;
-      q.add(t + x);
-      ct = t;
+      c += (ct - t) / x + 1;
     }
-
-    return ct;
+    return c;
   }
 
   private static Scanner getScanner(String[] args) throws IOException {
