@@ -55,13 +55,13 @@ public class SimilarRows {
    * один общий важный столбец, заполненный одинаковым непустым значением. Кроме того, все столбцы,
    * которые непусты в обеих строчках одновременно, должны содержать одинаковые значения.
    */
-  private static boolean potentiallyEqual(boolean[] important, String[] row1, String[] row2) {
+  static boolean potentiallyEqual(boolean[] important, String[] row1, String[] row2) {
     boolean found = false;
     for (int i = 0; i < row1.length; i++) {
       String v1 = row1[i];
       String v2 = row2[i];
       if (v1.equals(v2)) {
-        if (important[i]) {
+        if (important[i] && !v1.isEmpty()) {
           found = true;
         }
         continue;
