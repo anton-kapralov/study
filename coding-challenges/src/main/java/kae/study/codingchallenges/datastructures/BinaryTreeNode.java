@@ -51,30 +51,30 @@ public class BinaryTreeNode {
         .toString();
   }
 
-  public static void inorder(BinaryTreeNode root, Consumer<BinaryTreeNode> visitor) {
+  public static void inOrder(BinaryTreeNode root, Consumer<BinaryTreeNode> visitor) {
     if (root == null) {
       return;
     }
-    inorder(root.left(), visitor);
+    inOrder(root.left(), visitor);
     visitor.accept(root);
-    inorder(root.right(), visitor);
+    inOrder(root.right(), visitor);
   }
 
-  public static void preorder(BinaryTreeNode root, Consumer<BinaryTreeNode> visitor) {
+  public static void preOrder(BinaryTreeNode root, Consumer<BinaryTreeNode> visitor) {
     if (root == null) {
       return;
     }
     visitor.accept(root);
-    inorder(root.left(), visitor);
-    inorder(root.right(), visitor);
+    preOrder(root.left(), visitor);
+    preOrder(root.right(), visitor);
   }
 
-  public static void postorder(BinaryTreeNode root, Consumer<BinaryTreeNode> visitor) {
+  public static void postOrder(BinaryTreeNode root, Consumer<BinaryTreeNode> visitor) {
     if (root == null) {
       return;
     }
-    inorder(root.left(), visitor);
-    inorder(root.right(), visitor);
+    postOrder(root.left(), visitor);
+    postOrder(root.right(), visitor);
     visitor.accept(root);
   }
 }
