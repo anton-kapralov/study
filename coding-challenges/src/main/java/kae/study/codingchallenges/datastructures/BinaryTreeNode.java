@@ -1,6 +1,7 @@
 package kae.study.codingchallenges.datastructures;
 
 import java.util.StringJoiner;
+import java.util.function.Consumer;
 
 public class BinaryTreeNode {
   private int value;
@@ -48,5 +49,14 @@ public class BinaryTreeNode {
         .add("left=" + (left != null ? left.value : "null"))
         .add("right=" + (right != null ? right.value : "null"))
         .toString();
+  }
+
+  public static void inorder(BinaryTreeNode root, Consumer<BinaryTreeNode> visitor) {
+    if (root == null) {
+      return;
+    }
+    inorder(root.left(), visitor);
+    visitor.accept(root);
+    inorder(root.right(), visitor);
   }
 }
