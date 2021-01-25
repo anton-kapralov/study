@@ -7,7 +7,7 @@ public class BinaryTreeNode {
   private BinaryTreeNode left;
   private BinaryTreeNode right;
 
-  BinaryTreeNode(int value) {
+  public BinaryTreeNode(int value) {
     this.value = value;
   }
 
