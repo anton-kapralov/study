@@ -68,4 +68,13 @@ public class BinaryTreeNode {
     inorder(root.left(), visitor);
     inorder(root.right(), visitor);
   }
+
+  public static void postorder(BinaryTreeNode root, Consumer<BinaryTreeNode> visitor) {
+    if (root == null) {
+      return;
+    }
+    inorder(root.left(), visitor);
+    inorder(root.right(), visitor);
+    visitor.accept(root);
+  }
 }
