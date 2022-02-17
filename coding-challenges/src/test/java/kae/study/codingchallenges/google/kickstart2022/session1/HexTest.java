@@ -135,7 +135,7 @@ public class HexTest {
           {
             new char[][] {
               {'R', 'R', 'B'},
-              {'R', 'B', 'B'},
+              {'R', '.', 'B'},
               {'R', 'B', 'B'},
             },
             "Red wins"
@@ -157,6 +157,15 @@ public class HexTest {
               {'B', 'R', 'B'},
             },
             "Blue wins"
+          },
+          // 16
+          {
+            new char[][] {
+              {'R', 'R', 'B'},
+              {'R', 'B', 'B'},
+              {'R', 'B', 'B'},
+            },
+            "Impossible"
           },
         });
   }

@@ -55,6 +55,12 @@ public class Hex {
 
   /** Returns a status string as specified by the Hex problem statement. */
   static String determineStatus(char[][] board) {
+    int bc = count('B', board);
+    int rc = count('R', board);
+    if (Math.abs(bc - rc) > 1) {
+      return "Impossible";
+    }
+
     boolean blueWins = false;
     boolean redWins = false;
 
@@ -73,14 +79,35 @@ public class Hex {
     }
 
     if (blueWins) {
+      if (bc != rc && bc - rc != 1) {
+        return "Impossible";
+      }
+
       return "Blue wins";
     }
 
     if (redWins) {
+      if (bc != rc && rc - bc != 1) {
+        return "Impossible";
+      }
       return "Red wins";
     }
 
     return "Nobody wins";
+  }
+
+  private static int count(char player, char[][] board) {
+    int c = 0;
+    int n = board.length;
+    for (int i = 0; i < n; i++) {
+      for (int j = 0; j < n; j++) {
+        if (board[i][j] != player) {
+          continue;
+        }
+        c++;
+      }
+    }
+    return c;
   }
 
   private static boolean bfs(
