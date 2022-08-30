@@ -16,8 +16,8 @@ public class Template {
         PrintWriter writer = getWriter(args)) {
       int t = scanner.nextInt();
 
-      for (int i = 0; i < t; i++) {
-        solve(i + 1, scanner, writer);
+      for (int i = 1; i <= t; i++) {
+        solve(i, scanner, writer);
       }
     }
   }
