@@ -47,8 +47,7 @@ public class SecondHand {
   }
 
   static boolean solve(int[] styles, int limit) {
-    float half = (float) styles.length / limit;
-    if (half > limit) {
+    if (styles.length > 2 * limit) {
       return false;
     }
     Arrays.sort(styles);
