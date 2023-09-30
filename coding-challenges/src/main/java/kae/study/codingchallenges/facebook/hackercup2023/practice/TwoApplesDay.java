@@ -29,17 +29,16 @@ public class TwoApplesDay {
     }
 
     private static void solve(int caseNumber, BufferedReader reader, PrintWriter writer) throws IOException {
-        int n = Integer.parseInt(reader.readLine());
         String[] ss = reader.readLine().split(" ");
         int[] ws = new int[ss.length];
         for (int i = 0; i < ss.length; i++) {
             ws[i] = Integer.parseInt(ss[i]);
         }
-        long a = solve(n, ws);
+        long a = solve(ws);
         writer.printf("Case #%d: %d\n", caseNumber, a);
     }
 
-    static long solve(int n, int[] ws) {
+    static long solve(int[] ws) {
         int k = ws.length;
         if (k == 1) {
             return 1;
