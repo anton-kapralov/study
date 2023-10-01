@@ -6,7 +6,7 @@ import org.junit.Test;
 public class TestBreadthFirstSearch {
 
   @Test
-  void testSearchCyclicGraph() {
+  public void testSearchCyclicGraph() {
     final Node<Integer> ninthNode = new Node<>(9);
     final Node<Integer> tenth = new Node<>(10);
     final Node<Integer> third = new Node<>(3);
